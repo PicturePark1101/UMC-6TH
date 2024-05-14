@@ -1,0 +1,2 @@
+# UMC6TH
+UMC 6TH 과제
