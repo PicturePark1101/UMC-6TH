@@ -20,7 +20,7 @@ public class TempController {
 
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(SuccessStatusResponse.of(
-            SuccessMessage.POST_CREATE_SUCCESS,
+            SuccessMessage.REVIEW_CREATE_SUCCESS,
             TempResponse.of("This is Test!")));
   }
 }

@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Mission extends BaseTimeEntity {
+public class Review extends BaseTimeEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,25 +31,28 @@ public class Mission extends BaseTimeEntity {
   @JoinColumn(name = "restaurant_id")
   private Restaurant restaurant;
 
-  private String description;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "member_id")
+  private Member member;
 
-  private int point;
+  private String content;
 
-  @OneToMany(mappedBy = "mission")
-  private List<MemberMission> memberMissions = new ArrayList<>();
+  private double rate;
 
-  public static Mission create(Restaurant restaurant, String description, int point) {
-    return Mission.builder()
+  public static Review create(Restaurant restaurant, Member member, String content, double rate) {
+    return Review.builder()
         .restaurant(restaurant)
-        .description(description)
-        .point(point)
+        .member(member)
+        .content(content)
+        .rate(rate)
         .build();
   }
 
   @Builder
-  private Mission(Restaurant restaurant, String description, int point) {
+  private Review(Restaurant restaurant, Member member, String content, double rate) {
     this.restaurant = restaurant;
-    this.description = description;
-    this.point = point;
+    this.member = member;
+    this.content = content;
+    this.rate = rate;
   }
 }

@@ -41,4 +41,19 @@ public class MemberMission extends BaseTimeEntity {
   private MissionStatus status;
 
   private LocalDateTime expireDate;
+
+  public static MemberMission create(Member member, Mission mission) {
+    return MemberMission.builder()
+        .member(member)
+        .mission(mission)
+        .build();
+  }
+
+  @Builder
+  private MemberMission(Member member, Mission mission) {
+    this.mission = mission;
+    this.member = member;
+    this.status = MissionStatus.ING;
+    this.expireDate = LocalDateTime.MAX;
+  }
 }

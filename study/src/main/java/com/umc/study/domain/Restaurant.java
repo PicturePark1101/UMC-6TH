@@ -34,6 +34,9 @@ public class Restaurant extends BaseTimeEntity {
   @JoinColumn(name = "restaurant_category_id")
   private RestaurantCategory restaurantCategory;
 
+  @OneToMany(mappedBy = "restaurant")
+  private List<Review> reviews = new ArrayList<>();
+
   private String name;
 
   private String address;
